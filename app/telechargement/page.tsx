@@ -75,8 +75,10 @@ export default function TelechargementPage() {
                     alt="Atlas IBO APK direct download"
                     fill
                     style={{ objectFit: "cover" }}
-                    sizes="(max-width: 640px) 100vw, 480px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 800px"
+                    quality={100}
                   />
+                  <span className="dl-apk-4k">4K</span>
                   <div className="dl-apk-overlay">
                     <span className="dl-apk-badge">
                       <Download size={18} />
