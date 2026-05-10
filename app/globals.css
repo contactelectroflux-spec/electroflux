@@ -3205,6 +3205,273 @@ footer {
 .order-status-badge--pending  { background: rgba(154, 154, 157, 0.15); color: var(--muted); }
 
 /* ═══════════════════════════════════════════
+   ADMIN — NEW FEATURES
+═══════════════════════════════════════════ */
+
+/* ── Sidebar badge ── */
+.admin-nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--electric);
+  color: var(--black);
+  font-size: 0.65rem;
+  font-weight: 800;
+  margin-left: 6px;
+}
+
+/* ── Orders toolbar (search, filter, export) ── */
+.admin-orders-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.admin-search-input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 0.82rem;
+  padding: 7px 12px 7px 30px;
+  outline: none;
+  width: 220px;
+  transition: border-color 0.18s;
+}
+
+.admin-search-input:focus {
+  border-color: var(--electric);
+}
+
+.admin-filter-select {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--white);
+  font-size: 0.82rem;
+  padding: 7px 10px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.18s;
+}
+
+.admin-filter-select:focus {
+  border-color: var(--electric);
+}
+
+.admin-export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(217, 255, 102, 0.12);
+  border: 1px solid rgba(217, 255, 102, 0.25);
+  border-radius: 8px;
+  color: var(--electric);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+
+.admin-export-btn:hover {
+  background: rgba(217, 255, 102, 0.2);
+}
+
+/* ── Note cell ── */
+.admin-note-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  max-width: 160px;
+  text-align: left;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.admin-note-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--white);
+}
+
+.admin-note-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px;
+  color: var(--white);
+}
+
+.admin-note-empty {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.admin-note-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-note-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--electric);
+  border-radius: 6px;
+  color: var(--white);
+  font-size: 0.78rem;
+  padding: 6px 8px;
+  resize: vertical;
+  min-width: 160px;
+  outline: none;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.admin-note-btns {
+  display: flex;
+  gap: 4px;
+}
+
+.admin-note-save,
+.admin-note-cancel {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.admin-note-save {
+  background: rgba(217, 255, 102, 0.18);
+  color: var(--electric);
+}
+
+.admin-note-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+/* ── Revenue chart bar colour ── */
+.admin-chart-bar-fill--revenue {
+  background: var(--ice);
+}
+
+/* ── Tickets panel ── */
+.admin-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.admin-ticket-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.admin-ticket-item:last-child {
+  border-bottom: none;
+}
+
+.admin-ticket-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 14px 20px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--white);
+  transition: background 0.15s;
+}
+
+.admin-ticket-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-ticket-item--open .admin-ticket-header {
+  background: rgba(217, 255, 102, 0.04);
+}
+
+.admin-ticket-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.admin-ticket-subject {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.admin-ticket-from {
+  font-size: 0.78rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-ticket-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.admin-ticket-date {
+  font-size: 0.75rem;
+}
+
+.admin-ticket-body {
+  padding: 4px 20px 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-ticket-message {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: pre-wrap;
+  line-height: 1.6;
+  margin: 0;
+  border-left: 3px solid rgba(217, 255, 102, 0.4);
+  padding-left: 12px;
+}
+
+/* ═══════════════════════════════════════════
    SUPPORT / TICKET PAGE
 ═══════════════════════════════════════════ */
 

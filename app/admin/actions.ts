@@ -5,14 +5,23 @@ import { redirect } from "next/navigation";
 import { adminDb } from "../../lib/firebase-admin";
 import { revalidatePath } from "next/cache";
 
-export async function updateOrderStatusAction(orderId: string, status: "paid" | "cancelled" | "pending") {
+async function requireAdmin() {
   const cookieStore = await cookies();
   const token = cookieStore.get("admin_token")?.value;
   if (!token || token !== process.env.ADMIN_SESSION_TOKEN) {
     throw new Error("Unauthorized");
   }
+}
+
+export async function updateOrderStatusAction(orderId: string, status: "paid" | "cancelled" | "pending") {
+  await requireAdmin();
   await adminDb.collection("orders").doc(orderId).update({ status });
   revalidatePath("/admin");
+}
+
+export async function saveOrderNoteAction(orderId: string, note: string) {
+  await requireAdmin();
+  await adminDb.collection("orders").doc(orderId).update({ note });
 }
 
 export async function loginAction(prevState: { error: string } | null, formData: FormData) {

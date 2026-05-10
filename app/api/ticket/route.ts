@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { adminDb } from "../../../lib/firebase-admin";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const TO_EMAIL = "contact.electroflux@gmail.com";
@@ -16,6 +17,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Email invalide." }, { status: 400 });
     }
 
+    // Save ticket to Firestore so it appears in admin panel
+    await adminDb.collection("tickets").add({
+      name,
+      email,
+      subject,
+      message,
+      createdAt: new Date(),
+    });
+
+    // Send email notification
     const { error } = await resend.emails.send({
       from: "Support atlasibo <onboarding@resend.dev>",
       to: TO_EMAIL,

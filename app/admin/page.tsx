@@ -1,10 +1,12 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { logoutAction } from "./actions";
-import { LogOut, ShoppingBag, TrendingUp, Users, Smartphone, Eye, BarChart2, MousePointerClick, Globe } from "lucide-react";
+import { LogOut, ShoppingBag, TrendingUp, Users, Smartphone, Eye, BarChart2, MousePointerClick, Globe, TicketCheck } from "lucide-react";
 import { adminDb } from "../../lib/firebase-admin";
-import OrderActions from "./OrderActions";
 import LiveVisitors from "./LiveVisitors";
+import OrdersTable from "./OrdersTable";
+import RevenueChart from "./RevenueChart";
+import TicketsPanel from "./TicketsPanel";
 
 export const metadata = { title: "Admin – atlasibo" };
 export const revalidate = 0;
@@ -27,6 +29,16 @@ interface Submission {
   email?: string;
   appareil?: string;
   remarque?: string;
+  note?: string;
+}
+
+interface Ticket {
+  id: string;
+  createdAt: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
 }
 
 interface PageView {
@@ -39,7 +51,7 @@ async function fetchOrders(): Promise<Submission[]> {
     const snap = await adminDb
       .collection("orders")
       .orderBy("createdAt", "desc")
-      .limit(100)
+      .limit(200)
       .get();
 
     return snap.docs.map((doc) => {
@@ -56,6 +68,31 @@ async function fetchOrders(): Promise<Submission[]> {
         email: d.email,
         appareil: d.appareil,
         remarque: d.remarque,
+        note: d.note,
+      };
+    });
+  } catch {
+    return [];
+  }
+}
+
+async function fetchTickets(): Promise<Ticket[]> {
+  try {
+    const snap = await adminDb
+      .collection("tickets")
+      .orderBy("createdAt", "desc")
+      .limit(100)
+      .get();
+    return snap.docs.map((doc) => {
+      const d = doc.data();
+      const ts = d.createdAt?.toDate?.();
+      return {
+        id: doc.id,
+        createdAt: ts ? ts.toISOString() : new Date().toISOString(),
+        name: d.name ?? "",
+        email: d.email ?? "",
+        subject: d.subject ?? "",
+        message: d.message ?? "",
       };
     });
   } catch {
@@ -137,7 +174,7 @@ export default async function AdminPage() {
     redirect("/admin/login");
   }
 
-  const [orders, pageViews] = await Promise.all([fetchOrders(), fetchPageViews()]);
+  const [orders, pageViews, tickets] = await Promise.all([fetchOrders(), fetchPageViews(), fetchTickets()]);
 
   // ── Order Stats ──
   const totalOrders = orders.length;
@@ -158,7 +195,23 @@ export default async function AdminPage() {
 
   const topPlan = Object.entries(planCounts).sort((a, b) => b[1] - a[1])[0];
   const topDevice = Object.entries(deviceCounts).sort((a, b) => b[1] - a[1])[0];
-  const recent = orders.slice(0, 20);
+
+  // ── Weekly Revenue (last 8 weeks) ──
+  const weeklyRevenue = Array.from({ length: 8 }, (_, i) => {
+    const weekStart = new Date();
+    weekStart.setDate(weekStart.getDate() - weekStart.getDay() - (7 * (7 - i)));
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekEnd.getDate() + 7);
+    const label = `S${i + 1}`;
+    const revenue = orders
+      .filter((o) => {
+        if (o.status !== "paid") return false;
+        const d = new Date(o.createdAt);
+        return d >= weekStart && d < weekEnd;
+      })
+      .reduce((sum, o) => sum + (PLAN_PRICES[getPlanKey(o.forfait)] ?? 0), 0);
+    return { label, revenue };
+  });
 
   // ── Analytics Stats ──
   const today = new Date().toISOString().split("T")[0];
@@ -198,6 +251,10 @@ export default async function AdminPage() {
           <a href="/admin#analytics" className="admin-nav-item">
             <BarChart2 size={18} />
             Analytiques
+          </a>
+          <a href="/admin#tickets" className="admin-nav-item">
+            <TicketCheck size={18} />
+            Tickets {tickets.length > 0 && <span className="admin-nav-badge">{tickets.length}</span>}
           </a>
         </nav>
         <form action={logoutAction} className="admin-sidebar-footer">
@@ -374,53 +431,16 @@ export default async function AdminPage() {
           )}
         </div>
 
-        {/* ── Orders table ── */}
-        <div className="admin-card admin-card--full">
-          <div className="admin-card-header">
-            <h2 className="admin-card-title">Dernières commandes</h2>
-          </div>
-          {recent.length === 0 ? (
-            <p className="admin-empty">Aucune commande pour l&apos;instant.</p>
-          ) : (
-            <div className="admin-table-wrap">
-              <table className="admin-table">
-                <thead>
-                  <tr>
-                    <th>Date</th><th>Nom</th><th>WhatsApp</th><th>Email</th><th>Forfait</th><th>Appareil</th><th>Remarque</th><th>Statut</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {recent.map((o) => (
-                    <tr key={o.id} className={`order-row--${o.status}`}>
-                      <td className="admin-td-date">{formatDate(o.createdAt)}</td>
-                      <td>{o.nom ?? "—"}</td>
-                      <td>
-                        {o.whatsapp ? (
-                          <a href={`https://wa.me/${o.whatsapp.replace(/\D/g, "")}`} target="_blank" rel="noopener noreferrer" className="admin-wa-link">
-                            {o.whatsapp}
-                          </a>
-                        ) : "—"}
-                      </td>
-                      <td>{o.email ?? "—"}</td>
-                      <td><span className="admin-badge">{getPlanKey(o.forfait)}</span></td>
-                      <td>{o.appareil?.split("(")[0]?.trim() ?? "—"}</td>
-                      <td className="admin-td-note">{o.remarque && o.remarque !== "—" ? o.remarque : "—"}</td>
-                      <td><OrderActions
-                        orderId={o.id}
-                        status={o.status}
-                        nom={o.nom}
-                        whatsapp={o.whatsapp}
-                        email={o.email}
-                        forfait={getPlanKey(o.forfait)}
-                        prix={o.prix}
-                      /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+        {/* ── Orders table (searchable, filterable, exportable, with notes) ── */}
+        <OrdersTable orders={orders} />
+
+        {/* ── Revenue chart ── */}
+        <div className="admin-section-label">Revenus</div>
+        <RevenueChart weeklyData={weeklyRevenue} totalRevenue={estimatedRevenue} />
+
+        {/* ── Support Tickets ── */}
+        <div className="admin-section-label" id="tickets">Tickets support</div>
+        <TicketsPanel tickets={tickets} />
       </main>
     </div>
   );
