@@ -2034,7 +2034,7 @@ footer {
   }
 
   .hero {
-    height: 56.25vw;
+    height: 66.67vw;
     margin-top: 72px;
     max-height: none;
     min-height: 0;
@@ -2048,12 +2048,25 @@ footer {
 
   .hero-visual img {
     object-fit: cover;
-    object-position: center 15%;
+    object-position: center center;
     image-rendering: high-quality;
   }
 
   .hero-actions {
-    bottom: 16px;
+    bottom: 12px;
+    gap: 8px;
+    width: calc(100% - 24px);
+  }
+
+  .primary-button {
+    font-size: 0.9rem;
+    padding: 0 18px;
+  }
+
+  .play-link {
+    gap: 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .section {

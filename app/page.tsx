@@ -100,7 +100,7 @@ export default function Home() {
       <section id="accueil" className="hero">
         <div className="hero-visual" aria-label="Aperçu Electro Flux">
           <Image
-            src="/images/hero section.webp"
+            src="/images/hero section.png"
             alt="Interface atlasibo IPTV premium"
             fill
             priority
@@ -164,7 +164,7 @@ export default function Home() {
       <section id="telechargement" className="section split">
         <div className="image-panel reveal-left">
           <Image
-            src="/images/IMAGES IPTV SMARTERS PRO.jpg"
+            src="/images/IMAGES IPTV SMARTERS PRO.png"
             alt="Interface IPTV Smarters Pro sur téléviseur et tablette"
             fill
             sizes="(max-width: 900px) 100vw, 48vw"
