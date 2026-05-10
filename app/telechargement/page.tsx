@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 import SiteFooter from "../components/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "Télécharger Atlas Pro IBO — APK & Downloader",
+  description:
+    "Téléchargez l'application Atlas Pro IBO en APK direct ou via Downloader (code 9380782). Compatible Android, Smart TV, Fire TV Stick, Fire TV Cube et boîtiers Amazon.",
+  alternates: { canonical: "https://electro-flux.com/telechargement" }
+};
 import { ArrowLeft, Download, Smartphone, MonitorSmartphone, Zap, Tv, Tablet, Monitor } from "lucide-react";
 
 const APK_URL = "https://atlas-ontv.com/wp-content/uploads/2025/11/ATLAS-PRO-IBO-1.apk";

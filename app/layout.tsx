@@ -16,19 +16,86 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://electro-flux.com"),
-  title: "atlasibo | IPTV premium",
+  title: {
+    default: "atlasibo | IPTV Premium — Atlas Pro IBO, Live TV 4K & VOD",
+    template: "%s | atlasibo IPTV"
+  },
   description:
-    "atlasibo propose une expérience IPTV premium, rapide et compatible avec tous vos écrans.",
+    "atlasibo — Abonnement IPTV premium avec Atlas Pro IBO. +13 000 chaînes en direct, +22 000 films, +5 000 séries en Full HD et 4K. Compatible Smart TV, Android, iOS, Fire TV et PC. Activation rapide, support 24/7.",
+  keywords: [
+    "IPTV",
+    "IPTV premium",
+    "abonnement IPTV",
+    "Atlas Pro IBO",
+    "atlasibo",
+    "Atlas IBO",
+    "IPTV France",
+    "IPTV 4K",
+    "live TV",
+    "chaînes IPTV",
+    "VOD IPTV",
+    "IPTV Smart TV",
+    "IPTV Android",
+    "IPTV Fire TV",
+    "meilleur IPTV",
+    "IPTV pas cher",
+    "IPTV légal",
+    "streaming TV",
+    "IPTV Full HD",
+    "IPTV Smarters",
+    "Atlas Pro",
+    "abonnement Atlas Pro IBO",
+    "IPTV Maroc",
+    "IPTV Algérie",
+    "IPTV Tunisie",
+    "IPTV Belgique",
+    "IPTV Canada"
+  ],
+  authors: [{ name: "atlasibo", url: "https://electro-flux.com" }],
+  creator: "atlasibo",
+  publisher: "atlasibo",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
   icons: {
     icon: "/images/Atlasibo logo.png",
     shortcut: "/images/Atlasibo logo.png",
     apple: "/images/Atlasibo logo.png"
   },
   openGraph: {
-    title: "atlasibo | IPTV premium",
+    type: "website",
+    locale: "fr_FR",
+    url: "https://electro-flux.com",
+    siteName: "atlasibo IPTV",
+    title: "atlasibo | IPTV Premium — Atlas Pro IBO, Live TV 4K & VOD",
     description:
-      "Une interface premium pour regarder vos contenus TV et VOD sur tous vos appareils.",
+      "Profitez de +13 000 chaînes en direct, +22 000 films et +5 000 séries en Full HD / 4K. IPTV premium avec Atlas Pro IBO, compatible tous appareils. Activation rapide, support 24/7.",
+    images: [
+      {
+        url: "/images/electro-flux-hero.png",
+        width: 1200,
+        height: 630,
+        alt: "atlasibo IPTV Premium — Atlas Pro IBO"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "atlasibo | IPTV Premium — Atlas Pro IBO, Live TV 4K & VOD",
+    description:
+      "+13 000 chaînes, +22 000 films, +5 000 séries. IPTV premium Full HD / 4K avec Atlas Pro IBO.",
     images: ["/images/electro-flux-hero.png"]
+  },
+  alternates: {
+    canonical: "https://electro-flux.com"
   }
 };
 

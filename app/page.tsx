@@ -1,7 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import DemoVideo from "./components/DemoVideo";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+
+export const metadata: Metadata = {
+  title: "atlasibo | IPTV Premium — Atlas Pro IBO, +13 000 chaînes Live TV 4K",
+  description:
+    "Abonnement IPTV premium Atlas Pro IBO : +13 000 chaînes en direct, +22 000 films, +5 000 séries en Full HD / 4K. Compatible Smart TV, Android, iOS, Fire TV, PC. Activation en 5 minutes, support 24/7.",
+  alternates: { canonical: "https://electro-flux.com" }
+};
 import {
   ArrowRight,
   BadgeCheck,
