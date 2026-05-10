@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://electro-flux.com"),
+  metadataBase: new URL("https://atlasibo.com"),
   title: {
     default: "atlasibo | IPTV Premium — Atlas Pro IBO, Live TV 4K & VOD",
     template: "%s | atlasibo IPTV"
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     "IPTV Belgique",
     "IPTV Canada"
   ],
-  authors: [{ name: "atlasibo", url: "https://electro-flux.com" }],
+  authors: [{ name: "atlasibo", url: "https://atlasibo.com" }],
   creator: "atlasibo",
   publisher: "atlasibo",
   robots: {
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://electro-flux.com",
+    url: "https://atlasibo.com",
     siteName: "atlasibo IPTV",
     title: "atlasibo | IPTV Premium — Atlas Pro IBO, Live TV 4K & VOD",
     description:
@@ -95,7 +95,7 @@ export const metadata: Metadata = {
     images: ["/images/electro-flux-hero.png"]
   },
   alternates: {
-    canonical: "https://electro-flux.com"
+    canonical: "https://atlasibo.com"
   }
 };
 

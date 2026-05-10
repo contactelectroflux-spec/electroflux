@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/admin", "/admin/"]
     },
-    sitemap: "https://electro-flux.com/sitemap.xml"
+    sitemap: "https://atlasibo.com/sitemap.xml"
   };
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Télécharger Atlas Pro IBO — APK & Downloader",
   description:
     "Téléchargez l'application Atlas Pro IBO en APK direct ou via Downloader (code 9380782). Compatible Android, Smart TV, Fire TV Stick, Fire TV Cube et boîtiers Amazon.",
-  alternates: { canonical: "https://electro-flux.com/telechargement" }
+  alternates: { canonical: "https://atlasibo.com/telechargement" }
 };
 import { ArrowLeft, Download, Smartphone, MonitorSmartphone, Zap, Tv, Tablet, Monitor } from "lucide-react";
 
