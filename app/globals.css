@@ -1941,6 +1941,10 @@ footer {
 }
 
 @media (max-width: 620px) {
+  nav a[href="/#faq"] {
+    display: none;
+  }
+
   .topbar {
     position: fixed;
     top: 0;
