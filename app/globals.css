@@ -3271,6 +3271,19 @@ footer {
 
 @media (max-width: 620px) {
   .ticket-row { grid-template-columns: 1fr; }
+
+  /* Prevent iOS from zooming into inputs smaller than 16px */
+  .ticket-field input,
+  .ticket-field select,
+  .ticket-field textarea {
+    font-size: 1rem;
+  }
+
+  /* Full-width submit button on mobile */
+  .ticket-form .primary-button {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -3677,7 +3690,7 @@ footer {
 
 @media (max-width: 640px) {
   .dl-page {
-    padding: 36px 16px 60px;
+    padding: 92px 16px 110px; /* 72px topbar + 20px gap on top; 110px for WhatsApp btn clearance */
   }
 
   .dl-card {
