@@ -27,6 +27,7 @@ export default function SiteFooter() {
           <Link href="/cgv">CGV</Link>
           <Link href="/confidentialite">Confidentialité</Link>
           <Link href="/mentions-legales">Mentions légales</Link>
+          <Link href="/support">Support</Link>
         </nav>
       </footer>
       <a

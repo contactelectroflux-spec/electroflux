@@ -3176,6 +3176,104 @@ footer {
 .order-status-badge--pending  { background: rgba(154, 154, 157, 0.15); color: var(--muted); }
 
 /* ═══════════════════════════════════════════
+   SUPPORT / TICKET PAGE
+═══════════════════════════════════════════ */
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticket-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ticket-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ticket-field label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ticket-field input,
+.ticket-field select,
+.ticket-field textarea {
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.18s;
+  resize: vertical;
+}
+
+.ticket-field input::placeholder,
+.ticket-field textarea::placeholder {
+  color: var(--muted);
+}
+
+.ticket-field input:focus,
+.ticket-field select:focus,
+.ticket-field textarea:focus {
+  border-color: var(--electric);
+}
+
+.ticket-field select option {
+  background: var(--charcoal);
+}
+
+.ticket-error {
+  color: #ff6b6b;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.ticket-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--electric);
+}
+
+.ticket-success h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0;
+}
+
+.ticket-success p {
+  color: var(--muted);
+  margin: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }
+
+@media (max-width: 620px) {
+  .ticket-row { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════
    TÉLÉCHARGEMENT PAGE
 ═══════════════════════════════════════════ */
 
