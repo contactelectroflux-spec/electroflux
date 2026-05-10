@@ -25,10 +25,12 @@ export default function SiteHeader() {
         lastY.current = y;
         return;
       }
-      if (y > lastY.current + 6 && y > 80) {
-        setHidden(true);
-      } else if (y < lastY.current - 6) {
+      if (y <= 10) {
+        // At the very top — always show
         setHidden(false);
+      } else if (y > lastY.current + 4) {
+        // Scrolling down — hide
+        setHidden(true);
       }
       lastY.current = y;
     }
