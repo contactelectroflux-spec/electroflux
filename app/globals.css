@@ -1841,7 +1841,7 @@ footer {
   }
 
   .brand-logo {
-    height: 96px;
+    height: 52px;
   }
 
   nav {
@@ -1988,10 +1988,6 @@ footer {
     width: min(100% - 24px, 1180px);
   }
 
-  .hero {
-    padding: 36px 0 44px;
-  }
-
   h1 {
     font-size: 3.28rem;
     line-height: 0.96;
@@ -2018,20 +2014,31 @@ footer {
     flex-direction: column;
   }
 
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    bottom: 24px;
+    width: calc(100% - 32px);
+    align-items: center;
+  }
+
   .primary-button,
-  .play-link,
   .card-button {
     width: 100%;
   }
 
   .play-link {
-    justify-content: center;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .hero {
-    height: 100svh;
+    height: 56.25vw;
+    margin-top: 72px;
     max-height: none;
     min-height: 0;
+    padding: 0 !important;
   }
 
   .hero-visual {
@@ -2041,8 +2048,12 @@ footer {
 
   .hero-visual img {
     object-fit: cover;
-    object-position: center center;
+    object-position: center 15%;
     image-rendering: high-quality;
+  }
+
+  .hero-actions {
+    bottom: 16px;
   }
 
   .section {
@@ -2143,10 +2154,6 @@ footer {
 
   .nav-cta svg {
     display: none;
-  }
-
-  .hero-visual {
-    min-height: 340px;
   }
 }
 
