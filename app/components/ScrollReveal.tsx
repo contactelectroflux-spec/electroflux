@@ -6,6 +6,15 @@ import { usePathname } from "next/navigation";
 export default function ScrollReveal() {
   const pathname = usePathname();
 
+  // Block right-click on images (run once)
+  useEffect(() => {
+    const block = (e: MouseEvent) => {
+      if ((e.target as HTMLElement).tagName === "IMG") e.preventDefault();
+    };
+    document.addEventListener("contextmenu", block);
+    return () => document.removeEventListener("contextmenu", block);
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
