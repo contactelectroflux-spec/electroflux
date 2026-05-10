@@ -1980,6 +1980,11 @@ footer {
     border-top-color: rgba(217, 255, 102, 0.2);
   }
 
+  /* Logo size on mobile */
+  .brand-logo {
+    height: 72px;
+  }
+
   nav a {
     padding: 5px 10px;
     font-size: 0.76rem;
@@ -2181,6 +2186,30 @@ footer {
 
   .nav-cta svg {
     display: none;
+  }
+}
+
+/* ── Very small phones (≤380px) ── */
+@media (max-width: 380px) {
+  /* Slightly smaller on very small phones */
+  .brand-logo {
+    height: 62px;
+  }
+
+  /* Hide "Accueil" (redundant — logo is the home link) */
+  nav a[href="/#accueil"] {
+    display: none;
+  }
+
+  /* Play-link: icon-only, hide text so CTA button has enough room */
+  .play-link {
+    font-size: 0;
+    gap: 0;
+  }
+
+  .play-link span {
+    width: 44px;
+    height: 44px;
   }
 }
 
