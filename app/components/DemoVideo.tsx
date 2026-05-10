@@ -18,7 +18,7 @@ export default function DemoVideo() {
       <video
         ref={videoRef}
         className="demo-video"
-        src="/videos/demo.mp4"
+        src="https://www.dropbox.com/scl/fi/jvn00a1c7571pfiutk8t2/YouCut_20260510_143938098.mp4?rlkey=mc90ms1y2mby17a9g8n3i2gl7&st=ixoc8s38&dl=1"
         autoPlay
         muted
         loop
